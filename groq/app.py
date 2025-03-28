@@ -1,5 +1,4 @@
 import streamlit as st
-import os
 from langchain_groq import ChatGroq
 from langchain_community.document_loaders import WebBaseLoader
 from langchain.embeddings import OllamaEmbeddings
@@ -10,11 +9,8 @@ from langchain.chains import create_retrieval_chain
 from langchain_community.vectorstores import FAISS
 import time
 
-from dotenv import load_dotenv
-load_dotenv()
-
 ## load the Groq API key
-groq_api_key=os.environ['GROQ_API_KEY']
+groq_api_key=st.secrets['GROQ_API_KEY']
 
 if "vector" not in st.session_state:
     st.session_state.embeddings=OllamaEmbeddings()
