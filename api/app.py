@@ -1,15 +1,12 @@
 from fastapi import FastAPI
-from langchain.prompts import ChatPromptTemplate
-from langchain.chat_models import ChatOpenAI
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_openai import ChatOpenAI
 from langserve import add_routes
 import uvicorn
-import os
 from langchain_community.llms import Ollama
-from dotenv import load_dotenv
+import streamlit as st
 
-load_dotenv()
-
-os.environ['OPENAI_API_KEY']=os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY=st.secrets["OPENAI_API_KEY"]
 
 app=FastAPI(
     title="Langchain Server",
